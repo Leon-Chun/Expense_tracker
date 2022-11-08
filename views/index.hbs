@@ -1,1 +1,47 @@
-<h1>這是index</h1>
+{{!-- 拿到 todos --}}
+
+
+<ul class="list-group col-md-6 m-auto">
+  <div class="dropdown d-flex flex-row-reverse pe-3">
+    <button class="btn btn-secondary dropdown-toggle " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      類別
+    </button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="#">家居物業</a></li>
+      <li><a class="dropdown-item" href="#">交通出行</a></li>
+      <li><a class="dropdown-item" href="#">休閒娛樂</a></li>
+      <li><a class="dropdown-item" href="#">餐飲食品</a></li>
+      <li><a class="dropdown-item" href="#">其他</a></li>
+    </ul>
+  </div>
+  <div>
+    <h1>總金額：</h1>
+    <h1 style="font-size:100px;" class="text-center">1000</hq>
+  </div>
+  {{!-- {{#each todos}} --}}
+  <li class="list-group-item mt-2">
+    <div class="row">
+      <div class="col-auto me-auto">
+        <h4 style="display: inline; vertical-align:middle;">
+          午餐
+        </h4>
+        <h3 style="display: inline; vertical-align:middle;">
+          100
+        </h3>
+      </div>
+
+      <div class="col-auto">
+        <a class="btn btn-success" href="./todos/{{ this._id }}/edit">修改</a>
+        <form action="./todos/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
+          <button class="btn btn-danger" type="submit">刪除</button>
+        </form>
+      </div>
+    </div>
+  </li>
+  {{!-- {{/each}} --}}
+</ul>
+
+<div class="row mt-3">
+  <a href="/todos/new" class="btn btn-primary mb-3 col-md-4 m-auto">新增支出</a>
+</div>
+  
