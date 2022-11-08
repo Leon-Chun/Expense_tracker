@@ -1,6 +1,13 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
-const PORT = process.env.PORT || 3000
+
+
+// dotenv setting
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+const PORT = process.env.PORT
+
 
 //使用套件後產生的
 const app = express()
