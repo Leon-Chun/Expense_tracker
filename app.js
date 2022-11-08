@@ -1,5 +1,6 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
+const mongoose = require('mongoose')
 
 
 // dotenv setting
@@ -8,6 +9,8 @@ if (process.env.NODE_ENV !== 'production') {
 }
 const PORT = process.env.PORT
 
+//自己設定的引用的項目
+require('./config/mongoose')
 
 //使用套件後產生的
 const app = express()
@@ -18,6 +21,7 @@ app.set('view engine', 'hbs')  //啟用引擎
 
 // user body get 
 app.use(express.urlencoded({ extended: true }))
+
 
 //router setting
 app.get('/', (req, res) => {
