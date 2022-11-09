@@ -19,7 +19,7 @@
     <h1 id="totalAmount" name="totalAmount" style="font-size:100px;" class="text-center">1000</h1>
   </div>
 
-  {{!-- {{#each todos}} --}}
+  {{#each data}}
   <li class="list-group-item">
 
     <div class="d-flex justify-content-between">
@@ -29,15 +29,15 @@
           <i class="fas fa-utensils m-1" style="font-size: 40px;color:rgb(0, 213, 255);"></i>
         </div>
         <div>
-          <h4 class="mb-0">買賓士</h4>
+          <h4 class="mb-0">{{this.name}}</h4>
           <span>
-            <small>2022/01/01</small>
+            <small>{{this.date}}</small>
           </span>
         </div>
       </div>
       <div>
         <h2>
-          100元
+          {{ this.amount }}
         </h2>
       </div>
 
@@ -49,7 +49,7 @@
       </div>
     </div>
   </li>
-  {{!-- {{/each}} --}}
+  {{/each}}
 </ul>
 
 <div class="row mt-3">
