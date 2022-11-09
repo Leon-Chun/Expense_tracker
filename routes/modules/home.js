@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router() // 啟動路由器功能
-// const Todo = require('../../models/todo') //資料庫資料，並刪除 app.js的引入
+const record = require('../../models/record')
 
 router.get('/', (req, res) => {
   res.render('index')
