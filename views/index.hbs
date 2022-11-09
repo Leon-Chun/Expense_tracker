@@ -43,7 +43,7 @@
 
       <div>
         <a class="btn btn-success" href="./todos/{{ this._id }}/edit">修改</a>
-        <form action="./todos/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
+        <form action="/expense-tracker/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
           <button class="btn btn-danger" type="submit">刪除</button>
         </form>
       </div>
