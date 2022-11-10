@@ -2,6 +2,8 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 const mongoose = require('mongoose')
 const methodOverride = require('method-override')
+const session = require('express-session') 
+
 // dotenv setting
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
@@ -23,6 +25,11 @@ app.set('view engine', 'hbs')  //啟用引擎
 // user body get 
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
+app.use(session({
+  secret: 'ThisIsMySecret',
+  resave: false,
+  saveUninitialized: true
+}))
 
 app.use(routes)
 
