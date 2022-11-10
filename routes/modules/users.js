@@ -13,6 +13,12 @@ router.post('/login', passport.authenticate('local', {
   failureRedirect: '/users/login'
 }))
 
+router.get('/logout', (req, res) => { 
+  req.logout(() => {
+    // req.flash('success_msg', '你已經成功登出。')
+    res.redirect('/users/login')
+  })
+})
 
 router.post('/register', (req, res) => {
   // 取得註冊表單參數
