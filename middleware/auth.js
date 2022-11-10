@@ -1,8 +1,9 @@
 module.exports = {
   authenticator: (req, res, next) => {
-    if (req.isAuthenticated()) {     //true 就進入下一個 middleware
+    if (req.isAuthenticated()) {
       return next()
     }
-    res.redirect('/users/login')    // false就強制返回 login 頁面
+    req.flash('warning_msg', '請先登入才能使用！') 
+    res.redirect('/users/login')
   }
 }
