@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router() // 啟動路由器功能
 const record = require('../../models/record')
-const Category = require('../../models/category')
 const moment = require('moment')
 const CATEGORYICON = {
   1 : "fa-solid fa-house",
@@ -28,7 +27,6 @@ router.get('/', async(req, res) => {
             break
           }
         }
-        
       })
       res.render('index', { data ,totalAmount,categoryIcon}) //, categories , totalAmount
     })

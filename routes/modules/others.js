@@ -3,13 +3,6 @@ const router = express.Router() // 啟動路由器功能
 const Recort = require('../../models/record')
 const Category = require('../../models/category')
 const moment = require('moment')
-const CATEGORY = {
-  家居物業: "https://fontawesome.com/icons/home?style=solid",
-  交通出行: "https://fontawesome.com/icons/shuttle-van?style=solid",
-  休閒娛樂: "https://fontawesome.com/icons/grin-beam?style=solid",
-  餐飲食品: "https://fontawesome.com/icons/utensils?style=solid",
-  其他: "https://fontawesome.com/icons/pen?style=solid"
-}
 
 //首頁
 router.get('/new', (req, res) => {
@@ -24,7 +17,7 @@ router.post('/new', (req, res) => {
     .catch(error => console.log(error))
 })
 
-
+//前往修改頁面
 router.get('/:id/edit',(req,res) => {
   const _id = req.params.id
   return Recort.findById({ _id }) //,userId
@@ -42,10 +35,17 @@ router.get('/:id/edit',(req,res) => {
 router.put('/:id', (req, res) => {
   // const userId = req.user._id
   const _id = req.params.id
-  const body = req.body
- 
+  const {name,date,categoryId,amount} = req.body
+
   return Recort.findOne({ _id }) //,userId
-    .then(() =>  res.redirect('/'))
+    .then(record => {
+      record.name = name
+      record.date = date
+      record.categoryId = categoryId
+      record.amount = amount
+      record.save()
+      res.redirect('/')
+    })
     .catch(error => console.log(error))
 })
 
