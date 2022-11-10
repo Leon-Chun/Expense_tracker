@@ -12,9 +12,10 @@ const CATEGORYICON = {
 
 
 router.get('/', async(req, res) => {
+  const userId = req.user._id   //
   let totalAmount = 0
   let categoryIcon = {}
-  await record.find()
+  await record.find({userId})
     .lean()
     // .sort({ name: 'asc' }) //desc 反序
     .then(data => {
