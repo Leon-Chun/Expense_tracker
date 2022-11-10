@@ -1,5 +1,4 @@
 {{!-- 拿到 todos --}}
-
 <ul class="list-group col-md-6 m-auto p-2">
   <div class="dropdown d-flex flex-row-reverse pe-3">
     <button class="btn btn-secondary dropdown-toggle " type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -15,18 +14,16 @@
   </div>
 
   <div>
-    <h1>總金額：</h1>
-    <h1 id="totalAmount" name="totalAmount" style="font-size:100px;" class="text-center">1000</h1>
+    <h2 >總金額：</h2>
+    <h1 id="totalAmount" name="totalAmount" style="font-size:70px;" class="text-center">{{totalAmount}}</h1>
   </div>
 
   {{#each data}}
   <li class="list-group-item">
-
     <div class="d-flex justify-content-between">
-
       <div class="block1 d-flex">
         <div>
-          <i class="fas fa-utensils m-1" style="font-size: 40px;color:rgb(0, 213, 255);"></i>
+          <i class="{{this.categoryIconName}} m-1" style="font-size: 40px;color:rgb(0, 213, 255);"></i>
         </div>
         <div>
           <h4 class="mb-0">{{this.name}}</h4>
@@ -36,9 +33,9 @@
         </div>
       </div>
       <div>
-        <h2>
-          {{ this.amount }}
-        </h2>
+        <h3>
+          {{ this.amount }}元
+        </h3>
       </div>
 
       <div>

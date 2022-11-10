@@ -1,16 +1,19 @@
 const express = require('express')
 const router = express.Router() // 啟動路由器功能
 const Recort = require('../../models/record')
+const Category = require('../../models/category')
 const moment = require('moment')
+const CATEGORY = {
+  家居物業: "https://fontawesome.com/icons/home?style=solid",
+  交通出行: "https://fontawesome.com/icons/shuttle-van?style=solid",
+  休閒娛樂: "https://fontawesome.com/icons/grin-beam?style=solid",
+  餐飲食品: "https://fontawesome.com/icons/utensils?style=solid",
+  其他: "https://fontawesome.com/icons/pen?style=solid"
+}
 
 //首頁
 router.get('/new', (req, res) => {
   res.render('new')
-  // Todo.find()
-  //   .lean()
-  //   .sort({ name: 'asc' }) //desc 反序
-  //   .then(todos => res.render('index', { todos }))
-  //   .catch(error => console.error(error))
 })
 
 //新增
@@ -29,27 +32,23 @@ router.get('/:id/edit',(req,res) => {
     // .populate('category')
     .then(record => {
       record.date = moment(record.date).format('YYYY-MM-DD')
-      // categories.forEach(category => {
-      //   if (category._id.toString() === record.category._id.toString()) {
-      //     category.selected = 'selected'
-      //   }
-      // })
-      res.render('edit', { record })// , categories
+      res.render('edit', { record })
     })
     .catch(error => console.log(error))
 })
+
 
 //修改
 router.put('/:id', (req, res) => {
   // const userId = req.user._id
   const _id = req.params.id
   const body = req.body
-  console.log(body,_id)
  
   return Recort.findOne({ _id }) //,userId
     .then(() =>  res.redirect('/'))
     .catch(error => console.log(error))
 })
+
 
 
 //刪除
