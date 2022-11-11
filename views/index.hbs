@@ -1,12 +1,14 @@
 {{!-- 拿到 todos --}}
 <ul class="list-group col-md-6 m-auto p-2 mt-3">
-  <div class="category">
+  <div class="category d-flex flex-row-reverse pe-3">
     <form action="/">
-      <select class="category-dropdown" name="category" id="category" onchange="this.form.submit()">
+      <select class="category-dropdown  btn btn-secondary" name="category" id="category" onchange="this.form.submit()">
         <option value="">所有類別</option>
-        {{#each categories}}
-        <option value="{{this._id}}" {{this.selected}}>{{this.name}}</option>
-        {{/each}}
+        <option {{this.selected}}>家居物業</option>
+        <option {{this.selected}}>交通出行</option>
+        <option {{this.selected}}>休閒娛樂</option>
+        <option {{this.selected}}>餐飲食品</option>
+        <option {{this.selected}}>其他</option>
       </select>
     </form>
   </div>
