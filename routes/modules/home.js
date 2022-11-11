@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router() // 啟動路由器功能
 const record = require('../../models/record')
+const Category= require('../../models/category') //內有五項id+icon
 const moment = require('moment')
 const CATEGORYICON = {
   1 : "fa-solid fa-house",
@@ -15,6 +16,7 @@ router.get('/', async(req, res) => {
   const userId = req.user._id   //
   let totalAmount = 0
   let categoryIcon = {}
+
   await record.find({userId})
     .lean()
     // .sort({ name: 'asc' }) //desc 反序

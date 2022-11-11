@@ -1,16 +1,14 @@
 {{!-- 拿到 todos --}}
 <ul class="list-group col-md-6 m-auto p-2 mt-3">
-  <div class="dropdown d-flex flex-row-reverse pe-3">
-    <button class="btn btn-secondary dropdown-toggle " type="button" data-bs-toggle="dropdown" aria-expanded="false">
-      選擇類別
-    </button>
-    <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="#">家居物業</a></li>
-      <li><a class="dropdown-item" href="#">交通出行</a></li>
-      <li><a class="dropdown-item" href="#">休閒娛樂</a></li>
-      <li><a class="dropdown-item" href="#">餐飲食品</a></li>
-      <li><a class="dropdown-item" href="#">其他</a></li>
-    </ul>
+  <div class="category">
+    <form action="/">
+      <select class="category-dropdown" name="category" id="category" onchange="this.form.submit()">
+        <option value="">所有類別</option>
+        {{#each categories}}
+        <option value="{{this._id}}" {{this.selected}}>{{this.name}}</option>
+        {{/each}}
+      </select>
+    </form>
   </div>
 
   <div>
