@@ -27,6 +27,7 @@ router.post('/new', (req, res) => {
 router.get('/:id/edit', async (req,res) => {
   const userId = req.user._id
   const _id = req.params.id
+  console.log(req.params)
   const categoryData = []
 
   await Category.find({})
