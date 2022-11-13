@@ -1,5 +1,5 @@
-我的餐廳清單
-![Index page about Restaurant List](./public/image/1.png
+家庭記事本
+![Index page about Restaurant List](./public/image/1.png)
 ![Index page about Restaurant List](./public/image/2.png)
 
 ## 介紹
