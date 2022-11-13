@@ -1,17 +1,17 @@
 我的餐廳清單
-![Index page about Restaurant List](./public//image//%E7%99%BB%E5%85%A5%E7%95%AB%E9%9D%A2%2020221107.png)
-![Index page about Restaurant List](./public/image/snapshot.png)
+![Index page about Restaurant List](./public/image/1.png
+![Index page about Restaurant List](./public/image/2.png)
 
 ## 介紹
 
-具有會員系統，紀錄屬於自己的餐廳清單，可以瀏覽餐廳、查看詳細資訊。
+具有會員系統，紀錄屬於自己的代辦事項，可以瀏覽，查看，新增，刪除詳細資訊。
 
 ### 功能
 
-- 能夠進行註冊，登入，並收藏喜歡的餐廳。
-- 查看所有餐廳
-- 瀏覽餐廳的詳細資訊
-- 搜尋特定餐廳
+- 能夠進行註冊，登入，並紀錄生活事項。
+- 查看所有事項
+- 依分類瀏覽詳細資訊
+
 
 ## 開始使用
 
@@ -40,10 +40,16 @@
    ```bash
    ctrl + c
    ```
+7. 能夠使用預設好的種子資料。
+   種子帳號是：user1@example.com
+   預設密碼：12345678
 
+   ```bash
+   npm run seed
+   ```
 ## 開發工具
 - Node.js 10.15.0
 - Express 4.17.1
 - Express-Handlebars 5.3.5
-- Bootstrap 4.3.1
+- Bootstrap 5
 - Font-awesome 5.8.1
