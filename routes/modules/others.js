@@ -6,12 +6,18 @@ const moment = require('moment')
 
 //首頁
 router.get('/new', (req, res) => {
-  res.render('new')
+  Category.find({})
+    .lean()
+    .then(categories => {
+        res.render('new',{categories})
+    })
 })
 
 //新增
 router.post('/new', (req, res) => {
   const userId = req.user._id
+  const catogory = req.body._id
+
   return Recort.create({ ...req.body ,userId}) 
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))

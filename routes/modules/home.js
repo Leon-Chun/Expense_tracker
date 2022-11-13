@@ -1,37 +1,49 @@
 const express = require('express')
-const router = express.Router() // 啟動路由器功能
-const record = require('../../models/record')
-const Category= require('../../models/category') //內有五項id+icon
+const router = express.Router() 
+const Record = require('../../models/record')
+const Category= require('../../models/category')
 const moment = require('moment')
-const CATEGORYICON = {
-  1 : "fa-solid fa-house",
-  2 : "fa-solid fa-van-shuttle",
-  3 : "fa-solid fa-face-grin-beam",
-  4 : "fa-solid fa-utensils",
-  5 : "fa-solid fa-pen"
-}
 
 
 router.get('/', async(req, res) => {
-  const userId = req.user._id   //
+  const userId = req.user._id
+  const category = req.body.category //body 是 抓使用者輸入
+  console.log(req.user)
+  const categorySelect = []
   let totalAmount = 0
-  let categoryIcon = {}
+  let categoryData=[]
+  // let categories = []
 
-  await record.find({userId})
+  await Category.find({})
     .lean()
-    // .sort({ name: 'asc' }) //desc 反序
+    .then(categories => {
+      categoryData.push(...categories)
+      categories.forEach(category => {
+        // 下拉選單保留選擇項目
+        if (category._id.toString() === req.query.category) {
+          category.selected = 'selected'
+          categorySelect.push(req.query.category)
+          // 若沒選擇，就全選
+        } else if (!req.query.category) {
+          categorySelect.push(category)
+        }
+      })
+    })
+
+
+  await Record.find({ userId })//, catogory:categorySelect
+    .lean()
     .then(data => {
       data.forEach(record => {
         record.date = moment(record.date).format('YYYY-MM-DD')
         totalAmount += record.amount
-        for (let key in CATEGORYICON) {
-          if (record.categoryId == key) {
-            record.categoryIconName = CATEGORYICON[key]
-            break
+        categoryData.forEach(category => {
+          if (category.id == record.categoryId){
+            record.categoryIconName = category.icon
           }
-        }
+        })
       })
-      res.render('index', { data ,totalAmount,categoryIcon}) //, categories , totalAmount
+      res.render('index', { data, totalAmount, categoryData })
     })
     .catch(error => console.error(error))
 })
