@@ -11,7 +11,9 @@ router.get('/login', (req, res) => {
 
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/',
-  failureRedirect: '/users/login'
+  failureRedirect: '/users/login',
+  badRequestMessage: '帳號密碼不能為空白',
+  failureFlash: true
 }))
 
 router.get('/logout', (req, res) => { 
