@@ -25,7 +25,7 @@
         <label for="categoryId" class="col-sm-2 col-form-label">類別*：</label>
         <select class="form-select p-2 flex-grow-1" aria-label="categoryId" name="categoryId" id="categoryId" required>
           {{#each categoryData}}
-          <option value="{{this._id}} {{this.id}}" {{this.selected}}>{{this.name}}</option>
+          <option value="{{this.id}}" {{this.selected}}>{{this.name}}</option>
           {{/each}}
         </select>
       </div>

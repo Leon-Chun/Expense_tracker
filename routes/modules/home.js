@@ -8,7 +8,6 @@ const moment = require('moment')
 router.get('/', async(req, res) => {
   const userId = req.user._id
   const category = req.body.category //body 是 抓使用者輸入
-  console.log(req.user)
   const categorySelect = []
   let totalAmount = 0
   let categoryData=[]

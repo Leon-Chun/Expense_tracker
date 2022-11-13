@@ -7,8 +7,7 @@ const recordSchema = new Schema({
   amount: { type: Number, required: true },
   categoryId: { type: Number,required: true },
   userId: { type: Schema.Types.ObjectId, ref: 'User', index: true, required: true },
-  category: { type: Schema.Types.ObjectId, ref: 'Category', index: true, required: true },
-  createdAd: { type: Date, default: Date.now },
+  createdAd: { type: Date, default: Date.now }
 })
 
 module.exports = mongoose.model('Record', recordSchema)

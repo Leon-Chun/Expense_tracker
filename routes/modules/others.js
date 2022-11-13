@@ -17,7 +17,6 @@ router.get('/new', (req, res) => {
 //新增
 router.post('/new', (req, res) => {
   const userId = req.user._id
-  const catogory = req.body._id
 
   return Recort.create({ ...req.body ,userId}) 
     .then(() => res.redirect('/'))
@@ -25,14 +24,23 @@ router.post('/new', (req, res) => {
 })
 
 //前往修改頁面
-router.get('/:id/edit',(req,res) => {
+router.get('/:id/edit', async (req,res) => {
   const userId = req.user._id
   const _id = req.params.id
+  const categoryData = []
+
+  await Category.find({})
+    .sort({ id: 'asc' })
+    .lean()
+    .then(categories => {
+      categoryData.push(...categories)
+    })
+
   return Recort.findOne({ _id ,userId})
     .lean()
     .then(record => {
       record.date = moment(record.date).format('YYYY-MM-DD')
-      res.render('edit', { record })
+      res.render('edit', { record, categoryData })
     })
     .catch(error => console.log(error))
 })
