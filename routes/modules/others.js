@@ -7,9 +7,10 @@ const moment = require('moment')
 //首頁
 router.get('/new', (req, res) => {
   Category.find({})
+    .sort({ id : 'asc' })
     .lean()
-    .then(categories => {
-        res.render('new',{categories})
+    .then(categoryData => {
+        res.render('new',{categoryData})
     })
 })
 
