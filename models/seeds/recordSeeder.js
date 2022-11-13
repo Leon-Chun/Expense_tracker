@@ -10,8 +10,8 @@ const db = require('../../config/mongoose')
 
 const SEED_USERS = [{
   name: 'user1',
-  email: 'aaa@aaa.aaa',
-  password: 'a'
+  email: 'user1@example.com',
+  password: '12345678'
 }]
 
 const itemsSeeder = [{

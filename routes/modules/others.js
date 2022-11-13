@@ -27,21 +27,28 @@ router.post('/new', (req, res) => {
 router.get('/:id/edit', async (req,res) => {
   const userId = req.user._id
   const _id = req.params.id
-  console.log(req.params)
   const categoryData = []
 
-  await Category.find({})
-    .sort({ id: 'asc' })
-    .lean()
-    .then(categories => {
-      categoryData.push(...categories)
-    })
-
-  return Recort.findOne({ _id ,userId})
+  await Recort.findOne({ _id ,userId})
     .lean()
     .then(record => {
       record.date = moment(record.date).format('YYYY-MM-DD')
-      res.render('edit', { record, categoryData })
+      
+      Category.find({})
+        .sort({ id: 'asc' })
+        .lean()
+        .then(categories => {
+          categories.forEach(category => {
+            
+            if (record.categoryId == category.id) {
+              category.selected = 'selected'
+              categoryData.push(category)
+            }else{
+              categoryData.push(category)
+            }
+          })
+           res.render('edit', { record, categoryData })
+        })
     })
     .catch(error => console.log(error))
 })
@@ -51,13 +58,13 @@ router.get('/:id/edit', async (req,res) => {
 router.put('/:id', (req, res) => {
   const userId = req.user._id
   const _id = req.params.id
-  const {name,date,categoryId,amount} = req.body
+  const {name,date,category,amount} = req.body
 
   return Recort.findOne({ _id ,userId })
     .then(record => {
       record.name = name
       record.date = date
-      record.categoryId = categoryId
+      record.categoryId = category
       record.amount = amount
       record.save()
       res.redirect('/')
